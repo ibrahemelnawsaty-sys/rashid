@@ -1,0 +1,15 @@
+# رشيد — .htaccess الجذر (عندما يكون جذر المشروع هو public_html نفسه على الاستضافة المشتركة).
+# يوجّه كل الطلبات إلى مجلد Laravel العام public/ دون تغيير Document Root أو روابط رمزية.
+# ملفات المشروع الحساسة (‎.env / vendor / app ...) محميّة تلقائياً لأنها خارج public/
+# فأي طلب لها يُوجَّه إلى public/<الملف> وهو غير موجود ⇐ 404.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# حماية إضافية لملف البيئة من الوصول المباشر.
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
