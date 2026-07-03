@@ -1,0 +1,63 @@
+/* ============================================================
+   رشيد — هيكل التطبيق الحقيقي (App Shell) لكامل نافذة العرض.
+   نفس أصناف المعاينة (appbar/screen/bottomnav) لكن بعرض كامل موبايل-أولاً.
+   ============================================================ */
+.app-viewport {
+  min-height: 100dvh; max-width: 480px; margin-inline: auto;
+  background: var(--color-background); display: flex; flex-direction: column;
+  position: relative; box-shadow: var(--shadow-lg);
+}
+
+/* شريط علوي */
+.appbar { position: sticky; top: 0; z-index: 20;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); }
+.appbar--brand { background: var(--gradient-brand); border-bottom: 0; color: #fff; }
+.appbar__row { display: flex; align-items: center; gap: var(--space-3); }
+.appbar__title { font-weight: 700; font-size: var(--text-h3); }
+.appbar--brand .appbar__title { color: #fff; }
+.appbar__sub { font-size: var(--text-xs); color: var(--color-ink-muted); }
+.appbar--brand .appbar__sub { color: rgba(255,255,255,.8); }
+.appbar__spacer { margin-inline-start: auto; }
+.iconbtn { width: 40px; height: 40px; border-radius: var(--radius-full); display: grid; place-items: center;
+  position: relative; background: color-mix(in srgb, var(--color-ink) 6%, transparent);
+  color: var(--color-ink); border: 0; cursor: pointer; }
+.appbar--brand .iconbtn { background: rgba(255,255,255,.15); color: #fff; }
+.iconbtn .count { position: absolute; top: -2px; inset-inline-end: -2px; min-width: 18px; height: 18px;
+  padding: 0 4px; background: var(--color-danger); color: #fff; border-radius: var(--radius-full);
+  font-size: 11px; font-weight: 700; display: grid; place-items: center; direction: ltr; }
+.backbtn { width: 40px; height: 40px; border-radius: var(--radius-full); display: grid; place-items: center;
+  background: color-mix(in srgb, var(--color-ink) 6%, transparent); color: var(--color-ink);
+  border: 0; cursor: pointer; text-decoration: none; }
+.appbar--brand .backbtn { background: rgba(255,255,255,.15); color: #fff; }
+
+/* منطقة المحتوى */
+.screen { flex: 1; padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-4); }
+.screen--pb { padding-bottom: 92px; }
+
+/* شريط التنقّل السفلي — مثبّت أسفل نافذة العرض ومتمركز بعرض التطبيق */
+.bottomnav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px; z-index: 30; display: grid; grid-template-columns: repeat(5, 1fr);
+  background: color-mix(in srgb, var(--color-surface) 96%, transparent); backdrop-filter: blur(10px);
+  border-top: 1px solid var(--color-border); padding-bottom: max(6px, env(safe-area-inset-bottom)); }
+.bottomnav a { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 0 6px;
+  min-height: 58px; font-size: .68rem; color: var(--color-ink-muted); font-weight: 600; text-decoration: none; }
+.bottomnav a .ic { font-size: 20px; line-height: 1; }
+.bottomnav a.is-active { color: var(--color-primary); }
+.ic { display: inline-flex; align-items: center; justify-content: center; }
+
+/* عناصر مشتركة تستعملها الشاشات */
+.value-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); text-align: center; }
+.value-row .v { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: var(--space-3);
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.value-row .v .ic { width: 38px; height: 38px; border-radius: var(--radius-full); display: grid; place-items: center;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent); color: var(--color-primary); font-size: 18px; }
+.value-row .v span { font-size: .72rem; color: var(--color-ink); font-weight: 600; line-height: 1.4; }
+
+.steps { display: flex; align-items: center; gap: 6px; }
+.steps .s { flex: 1; height: 5px; border-radius: var(--radius-full); background: var(--color-border); }
+.steps .s.is-done { background: var(--color-primary); }
+.steps .s.is-active { background: var(--color-accent); }
+
+.footnote { font-size: var(--text-xs); color: var(--color-ink-muted); line-height: 1.7; }

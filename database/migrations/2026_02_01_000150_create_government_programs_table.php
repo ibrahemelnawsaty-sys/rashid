@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('government_programs', function (Blueprint $table) {
+            $table->id();
+            $table->string('slug')->unique();
+            $table->string('name_ar');
+            $table->string('authority')->nullable();
+            $table->enum('category', ['dev_finance', 'sukuk', 'savings', 'relief']);
+            $table->bigInteger('max_amount_halalas')->nullable();
+            $table->smallInteger('max_tenor_months')->nullable();
+            $table->boolean('interest_free')->default(false);
+            $table->text('details_ar')->nullable();
+            $table->boolean('is_active')->default(true)->index();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('government_programs');
+    }
+};

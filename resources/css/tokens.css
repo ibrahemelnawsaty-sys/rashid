@@ -1,0 +1,54 @@
+/* ============================================================
+   رشيد — رموز التصميم (Design Tokens) — المصدر الوحيد للطبقة البصرية
+   مطابق حرفياً للدستور §10.2.5. يُمنع كتابة قيمة hex خام خارج هذا الملف.
+   ============================================================ */
+:root {
+  /* الألوان — الوضع الفاتح (الافتراضي) */
+  --color-primary:#0E5A4A; --color-primary-light:#12735E; --color-primary-dark:#0A4438;
+  --color-secondary:#0B2A3A; --color-accent:#C9A24B; --color-accent-soft:#E6D3A3;
+  --color-success:#1E8E5A; --color-warning:#D99A2B; --color-danger:#C0392B; --color-info:#2E6E8E;
+  /* نصّ دلالي داكن فوق الخلفيات الخافتة (يحقّق تباين AA للنص الصغير) */
+  --color-success-strong:#0F5132; --color-warning-strong:#7A4E0C; --color-danger-strong:#8E2A1E; --color-info-strong:#194E63;
+  --color-ink:#152329; --color-ink-muted:#5A6B72;
+  --color-surface:#FFFFFF; --color-surface-alt:#F1F5F3; --color-background:#F6F9F7; --color-border:#E2E8E4;
+  /* التدرّجات — استخدام مقيّد */
+  --gradient-brand:linear-gradient(135deg,#0E5A4A 0%,#0B2A3A 100%);
+  --gradient-accent:linear-gradient(135deg,#C9A24B 0%,#E6D3A3 100%);
+  /* الخط */
+  --font-sans:"IBM Plex Sans Arabic","Tajawal","Segoe UI",system-ui,sans-serif;
+  /* السلّم الطباعي */
+  --text-display:2rem;      /* 32 */
+  --text-h1:1.625rem;       /* 26 */
+  --text-h2:1.375rem;       /* 22 */
+  --text-h3:1.125rem;       /* 18 */
+  --text-body:1rem;         /* 16 */
+  --text-sm:.875rem;        /* 14 */
+  --text-xs:.75rem;         /* 12 */
+  --text-amount-lg:1.75rem; /* 28 */
+  /* الحواف */
+  --radius-sm:8px; --radius-md:12px; --radius-lg:16px; --radius-xl:24px; --radius-full:9999px;
+  /* الظلال — ناعمة متعدّدة الطبقات للعمق الراقي */
+  --shadow-sm:0 1px 2px rgba(10,68,56,.06), 0 1px 1px rgba(11,42,58,.04);
+  --shadow-md:0 1px 2px rgba(11,42,58,.05), 0 6px 16px rgba(11,42,58,.09);
+  --shadow-lg:0 2px 6px rgba(11,42,58,.06), 0 18px 44px rgba(11,42,58,.14);
+  --shadow-accent:0 1px 0 rgba(255,255,255,.35) inset, 0 8px 22px rgba(201,162,75,.30);
+  --shadow-focus:0 0 0 3px rgba(14,90,74,.28);
+  /* المسافات (مضاعفات 4px) */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  /* الحركة */
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+  --ease-in:cubic-bezier(.55,.06,.68,.19);
+}
+html.dark {
+  --color-background:#0A1518; --color-surface:#0F2028; --color-surface-alt:#15303A;
+  --color-ink:#EAF2EE; --color-ink-muted:#9DB0B3; --color-border:#1E3A44;
+  --color-primary:#17836B; --color-accent:#D6B15C;
+  /* قلب النص الدلالي فاتحاً على الخلفيات الداكنة */
+  --color-success-strong:#5FCE9B; --color-warning-strong:#E9B65A; --color-danger-strong:#F08A7C; --color-info-strong:#7FBAD4;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.30);
+  --shadow-md:0 1px 2px rgba(0,0,0,.30), 0 8px 20px rgba(0,0,0,.42);
+  --shadow-lg:0 2px 8px rgba(0,0,0,.35), 0 20px 46px rgba(0,0,0,.52);
+  --shadow-accent:0 1px 0 rgba(255,255,255,.14) inset, 0 8px 22px rgba(201,162,75,.24);
+  --shadow-focus:0 0 0 3px rgba(23,131,107,.45);
+}

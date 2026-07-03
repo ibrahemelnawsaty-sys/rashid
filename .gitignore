@@ -1,0 +1,24 @@
+# رشيد — تجاهل النشر (Laravel)
+/node_modules
+/.idea
+/.vscode
+/.fleet
+/.nova
+/.zed
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+/auth.json
+npm-debug.log
+yarn-error.log
+/.phpactor.json
+Homestead.json
+Homestead.yaml
+
+# قاعدة SQLite المحلية (الإنتاج يستخدم MySQL)
+/database/database.sqlite
+/database/*.sqlite
+
+# ملاحظة مقصودة: /vendor و /public/build مرفوعان عمداً
+# ليعمل الموقع على الاستضافة المشتركة مباشرةً دون composer/npm على الخادم.

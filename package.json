@@ -1,0 +1,20 @@
+{
+    "name": "rashid-platform",
+    "private": true,
+    "type": "module",
+    "description": "رشيد — مستشارك المالي · طبقة الواجهة (Blade + Alpine + Tailwind)",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "css": "tailwindcss -i resources/css/app.css -o public/build/preview.css --minify"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.9",
+        "alpinejs": "^3.14.1",
+        "autoprefixer": "^10.4.20",
+        "laravel-vite-plugin": "^1.0.5",
+        "postcss": "^8.4.47",
+        "tailwindcss": "^3.4.14",
+        "vite": "^5.4.10"
+    }
+}
