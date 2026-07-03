@@ -53,7 +53,10 @@ Route::middleware('auth')->prefix('app')->group(function () {
 
         // الادخار والمستشار
         Route::get('/goals', [GoalsController::class, 'index'])->name('app.goals.index');
-        Route::view('/goals/1', 'screens.goal-show')->name('app.goals.show');
+        Route::get('/goals/create', [GoalsController::class, 'create'])->name('app.goals.create');
+        Route::post('/goals', [GoalsController::class, 'store'])->name('app.goals.store');
+        Route::get('/goals/{goal}', [GoalsController::class, 'show'])->name('app.goals.show');
+        Route::post('/goals/{goal}/contribute', [GoalsController::class, 'contribute'])->name('app.goals.contribute');
         Route::get('/advisor', [AdvisorController::class, 'index'])->name('app.advisor.index');
         Route::post('/advisor', [AdvisorController::class, 'store'])->name('app.advisor.store');
 
