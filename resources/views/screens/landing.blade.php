@@ -7,7 +7,8 @@
       <div class="eyebrow">قرارك المالي يبدأ هنا</div>
       <div class="amount-display">تجنّب القروض غير الضرورية</div>
       <p class="footnote">قبل أن تقترض، دعنا نحلّل وضعك بهدوء ونكشف لك بدائل أذكى بصفر فوائد — قرارٌ واحد قد يوفّر عليك آلاف الريالات.</p>
-      <button class="btn btn--accent btn--block btn--lg">ابدأ الآن مجاناً</button>
+      <a href="{{ route('auth.register') }}" class="btn btn--accent btn--block btn--lg">ابدأ الآن مجاناً</a>
+      <a href="{{ route('auth.login') }}" class="btn btn--ghost btn--block">لديك حساب؟ تسجيل الدخول</a>
       <div class="center"><span class="footnote">دون بطاقة ائتمان · يستغرق أقل من دقيقتين</span></div>
     </div>
 

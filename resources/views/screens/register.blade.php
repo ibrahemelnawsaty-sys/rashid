@@ -1,3 +1,54 @@
 <x-layout title="إنشاء حساب — رشيد">
-<div class="appbar"><div class="appbar__row"><a href="{{ url()->previous() }}" class="backbtn" aria-label="رجوع"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12h15"/><path d="M13 5.5 19.5 12 13 18.5"/></svg></a><div class="appbar__title">التسجيل</div></div></div><div class="screen"><div class="stack-lg"><div class="stack-sm"><div class="eyebrow">مرحباً بك في رشيد</div><div class="section-title">أنشئ حسابك</div><div class="footnote">دقيقة واحدة تكفي لتبدأ رحلتك نحو قرارٍ مالي أرشد.</div></div><div class="stack"><div class="field"><div class="field__label">رقم الجوال</div><div class="field__control"><input type="tel" inputmode="tel" placeholder="5X XXX XXXX" dir="ltr"/><span class="field__suffix" dir="ltr"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h3l1.4 4.6-1.9 1.4a10.5 10.5 0 0 0 4.9 4.9l1.4-1.9 4.6 1.4v3a2 2 0 0 1-2.1 2A15.5 15.5 0 0 1 4.5 5.6a2 2 0 0 1 2-2.1z"/></svg> 966+</span></div><div class="footnote">سنرسل رمز تحقّق لتأكيد رقمك.</div></div><div class="field"><div class="field__label">الاسم الكامل</div><div class="field__control"><input type="text" placeholder="مثال: محمد عبدالله"/></div></div><div class="stack-sm"><div class="field__label">نوع الإقامة</div><div class="segmented"><div class="segmented__opt is-active">مواطن</div><div class="segmented__opt">مقيم</div></div></div></div><div class="divider"></div><label class="row"><input type="checkbox"/><div class="footnote">أوافق على <a>معالجة بياناتي</a> وفق <a>سياسة الخصوصية</a> وشروط الاستخدام في رشيد.</div></label><div class="stack-sm"><button class="btn btn--accent btn--block btn--lg">متابعة</button><button class="btn btn--ghost btn--block">لديك حساب؟ سجّل الدخول</button></div><div class="row-between"><span class="footnote"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15" r="1.1" fill="currentColor" stroke="none"/></svg> بياناتك محمية ومشفّرة</span><span class="badge badge--success"><span class="dot"></span>موثوق</span></div></div></div>
+<div class="appbar"><div class="appbar__row"><a href="{{ route('landing') }}" class="backbtn" aria-label="رجوع"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12h15"/><path d="M13 5.5 19.5 12 13 18.5"/></svg></a><div class="appbar__title">إنشاء حساب</div></div></div>
+<div class="screen">
+  <form method="POST" action="{{ route('auth.register') }}" x-data="{ residency: '{{ old('residency_type', 'citizen') }}' }">
+    @csrf
+    <input type="hidden" name="residency_type" :value="residency">
+    <div class="stack-lg">
+      <div class="stack-sm">
+        <div class="eyebrow">مرحباً بك في رشيد</div>
+        <div class="section-title">أنشئ حسابك</div>
+        <div class="footnote">دقيقة واحدة تكفي لتبدأ رحلتك نحو قرارٍ مالي أرشد.</div>
+      </div>
+
+      @if ($errors->any())
+      <div class="alert alert--danger"><div class="alert__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5 3 20h18L12 4.5z"/><path d="M12 10.5v4"/><circle cx="12" cy="17.4" r=".6" fill="currentColor" stroke="none"/></svg></div><div><div class="alert__body">{{ $errors->first() }}</div></div></div>
+      @endif
+
+      <div class="field">
+        <label class="field__label" for="phone">رقم الجوال</label>
+        <div class="field__control @error('phone') is-error @enderror">
+          <input id="phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="5X XXX XXXX" value="{{ old('phone') }}">
+          <span class="field__suffix" dir="ltr">966+</span>
+        </div>
+        <div class="footnote">سنرسل رمز تحقّق لتأكيد رقمك.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="name">الاسم الكامل</label>
+        <div class="field__control @error('name') is-error @enderror">
+          <input id="name" name="name" type="text" placeholder="مثال: محمد عبدالله" value="{{ old('name') }}">
+        </div>
+      </div>
+
+      <div class="stack-sm">
+        <div class="field__label">نوع الإقامة</div>
+        <div class="segmented">
+          <div role="button" tabindex="0" class="segmented__opt" :class="{ 'is-active': residency === 'citizen' }" @click="residency = 'citizen'">مواطن</div>
+          <div role="button" tabindex="0" class="segmented__opt" :class="{ 'is-active': residency === 'resident' }" @click="residency = 'resident'">مقيم</div>
+        </div>
+      </div>
+
+      <label class="row">
+        <input type="checkbox" name="consent" value="1" {{ old('consent') ? 'checked' : '' }}>
+        <div class="footnote">أوافق على معالجة بياناتي وفق سياسة الخصوصية وشروط الاستخدام في رشيد.</div>
+      </label>
+
+      <div class="stack-sm">
+        <button type="submit" class="btn btn--accent btn--block btn--lg">متابعة</button>
+        <a href="{{ route('auth.login') }}" class="btn btn--ghost btn--block">لديك حساب؟ سجّل الدخول</a>
+      </div>
+    </div>
+  </form>
+</div>
 </x-layout>

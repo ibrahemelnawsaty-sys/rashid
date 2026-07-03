@@ -33,7 +33,7 @@ class DecisionController extends Controller
     /** ينشئ جلسة قرار، يشغّل المحرك، ويحوّل لصفحة النتيجة. */
     public function store(Request $request): RedirectResponse
     {
-        $user = User::where('role', 'individual')->firstOrFail();
+        $user = auth()->user();
 
         // المبلغ قد يصل منسّقاً بفواصل (مثل "30,000")؛ نُطبّعه قبل التحقّق.
         $request->merge([
@@ -80,6 +80,8 @@ class DecisionController extends Controller
     /** يعرض نتيجة الجلسة مع مخرَجها وأرقام «الصدمة الإيجابية» والبدائل. */
     public function show(DecisionSession $decisionSession): View
     {
+        abort_unless($decisionSession->user_id === auth()->id(), 403);
+
         $decisionSession->loadMissing('outcome', 'user.financialProfile', 'answers');
         $outcome = $decisionSession->outcome;
         $profile = $decisionSession->user?->financialProfile;

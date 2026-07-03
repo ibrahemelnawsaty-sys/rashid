@@ -6,9 +6,10 @@
 <div class="card card--pad">
 <div class="stack-sm center">
 <div class="choice__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></div>
-<div class="section-title">محمد</div>
-<div class="footnote" dir="ltr">+966 5·· ··· ·45</div>
-<div class="badge badge--accent"><span class="dot"></span>مواطن موثّق</div>
+@php $u = auth()->user(); $ph = $u->phone ?? ''; @endphp
+<div class="section-title">{{ $u->name }}</div>
+<div class="footnote" dir="ltr">+966 {{ strlen($ph) >= 5 ? substr($ph, 3, 2).' ••• '.substr($ph, -2) : '' }}</div>
+<div class="badge badge--accent"><span class="dot"></span>{{ $u->residency_type === 'resident' ? 'مقيم' : 'مواطن' }} موثّق</div>
 </div>
 </div>
 
@@ -31,7 +32,7 @@
 <div class="stack-sm">
 <div class="eyebrow">الخصوصية والتفضيلات</div>
 <div class="card">
-<a class="listrow"><div class="listrow__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 19 6.2v4.9c0 4.4-3 7.3-7 8.9-4-1.6-7-4.5-7-8.9V6.2l7-2.7z"/></svg></div><div class="grow"><div class="listrow__title">إدارة الموافقات والخصوصية</div><div class="listrow__sub">التحكم في بياناتك المُشارَكة</div></div><span class="chev">‹</span></a>
+<a href="{{ route('app.consents.index') }}" class="listrow"><div class="listrow__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 19 6.2v4.9c0 4.4-3 7.3-7 8.9-4-1.6-7-4.5-7-8.9V6.2l7-2.7z"/></svg></div><div class="grow"><div class="listrow__title">إدارة الموافقات والخصوصية</div><div class="listrow__sub">التحكم في بياناتك المُشارَكة</div></div><span class="chev">‹</span></a>
 <a class="listrow"><div class="listrow__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.8 3.3 2.8 13.7 0 17M12 3.5c-2.8 3.3-2.8 13.7 0 17"/></svg></div><div class="grow"><div class="listrow__title">اللغة</div><div class="listrow__sub">العربية</div></div><span class="chev">‹</span></a>
 <div class="listrow"><div class="listrow__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.2A8 8 0 0 1 9.8 4 8 8 0 1 0 20 14.2z"/></svg></div><div class="grow"><div class="listrow__title">المظهر</div><div class="listrow__sub">اختر مظهر التطبيق</div></div><div class="segmented"><span class="segmented__opt">تلقائي</span><span class="segmented__opt is-active">داكن</span></div></div>
 </div>
@@ -47,7 +48,7 @@
 
 <div class="divider"></div>
 
-<button class="btn btn--danger btn--block btn--lg" aria-label="تسجيل الخروج">تسجيل الخروج</button>
+<form method="POST" action="{{ route('auth.logout') }}"><br>@csrf<button type="submit" class="btn btn--danger btn--block btn--lg">تسجيل الخروج</button></form>
 <div class="footnote center">الإصدار 2.4.0 · رشيد</div>
 
 </div>

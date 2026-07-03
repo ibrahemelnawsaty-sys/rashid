@@ -12,7 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'onboarded' => \App\Http\Middleware\EnsureOnboarded::class,
+        ]);
+        $middleware->redirectGuestsTo(fn () => route('auth.login'));
+        $middleware->redirectUsersTo(fn () => route('app.dashboard'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

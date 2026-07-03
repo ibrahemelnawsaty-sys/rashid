@@ -25,7 +25,7 @@
 </div>
 </div>
 
-<div class="choice">
+<a href="{{ route('app.onboarding.manual') }}" class="choice">
 <div class="choice__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 19.5h4L18.7 9.3a1.9 1.9 0 0 0-2.7-2.7L5.8 16.8v2.7z"/><path d="M14.5 8l2.7 2.7"/></svg></div>
 <div class="stack-sm">
 <div class="row-between">
@@ -34,11 +34,11 @@
 </div>
 <div class="choice__desc">تُدخل دخلك الشهري ومصروفاتك والتزاماتك بنفسك في دقائق. مناسب إن كنت تفضّل ألا تربط حساباتك الآن، ويمكنك الترقية للربط لاحقاً بضغطة واحدة.</div>
 </div>
-</div>
+</a>
 </div>
 
 <div class="stack-sm">
-<button class="btn btn--primary btn--block btn--lg">متابعة بالربط البنكي</button>
+<a href="{{ route('app.onboarding.manual') }}" class="btn btn--primary btn--block btn--lg">المتابعة بالإدخال اليدوي</a>
 <div class="alert alert--info">
 <div class="alert__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 19 6.2v4.9c0 4.4-3 7.3-7 8.9-4-1.6-7-4.5-7-8.9V6.2l7-2.7z"/></svg></div>
 <div>

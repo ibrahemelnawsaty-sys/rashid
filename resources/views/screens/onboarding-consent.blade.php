@@ -1,13 +1,19 @@
 <x-layout title="الموافقة — رشيد">
-<div class="appbar"><div class="appbar__row"><a href="{{ url()->previous() }}" class="backbtn" aria-label="رجوع"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12h15"/><path d="M13 5.5 19.5 12 13 18.5"/></svg></a><div class="appbar__title">الموافقة والخصوصية</div></div></div>
+<div class="appbar"><div class="appbar__row"><a href="{{ route('app.onboarding.welcome') }}" class="backbtn" aria-label="رجوع"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12h15"/><path d="M13 5.5 19.5 12 13 18.5"/></svg></a><div class="appbar__title">الموافقة والخصوصية</div></div></div>
 <div class="screen">
+<form method="POST" action="{{ route('app.onboarding.consent.store') }}">
+@csrf
 <div class="stack-lg">
 
 <div class="stack-sm">
-<div class="eyebrow">الخطوة الأخيرة</div>
+<div class="eyebrow">الخطوة الأولى</div>
 <div class="section-title">موافقتك تهمّنا</div>
 <div class="footnote">قبل أن نبدأ، نوضّح لك بشفافية كاملة كيف نتعامل مع بياناتك المالية. القرار لك وحدك، ولك كامل الحق في التحكّم به في أي وقت.</div>
 </div>
+
+@if ($errors->any())
+<div class="alert alert--danger"><div class="alert__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5 3 20h18L12 4.5z"/><path d="M12 10.5v4"/><circle cx="12" cy="17.4" r=".6" fill="currentColor" stroke="none"/></svg></div><div><div class="alert__body">يجب الموافقة على معالجة البيانات للمتابعة.</div></div></div>
+@endif
 
 <div class="card">
 <div class="card__body">
@@ -39,31 +45,23 @@
 
 <div class="divider"></div>
 
-<label class="row"><input type="checkbox" checked aria-label="أوافق على معالجة بياناتي المالية"><div class="grow"><div class="listrow__title">أوافق على جمع بياناتي ومعالجتها وفق ما ورد أعلاه ونظام حماية البيانات الشخصية (PDPL).</div></div></label>
+<label class="row"><input type="checkbox" name="agree" value="1"><div class="grow"><div class="listrow__title">أوافق على جمع بياناتي ومعالجتها وفق ما ورد أعلاه ونظام حماية البيانات الشخصية (PDPL).</div></div></label>
 
-</div>
-</div>
-</div>
-
-<div class="card">
-<div class="card__body">
-<div class="row-between">
-<div class="row"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4.2 7.5 12 13l7.8-5.5"/></svg></span><div class="grow"><div class="listrow__title">رسائل تسويقية</div><div class="listrow__sub">عروض ونصائح مالية عبر البريد والإشعارات. اختياري تماماً.</div></div></div>
-<div class="segmented"><div class="segmented__opt is-active">إيقاف</div><div class="segmented__opt">تشغيل</div></div>
 </div>
 </div>
 </div>
 
 <div class="alert alert--info">
-<div class="alert__icon">ℹ</div>
+<div class="alert__icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M9.6 9.6a2.5 2.5 0 0 1 4.6 1.4c0 1.7-2.2 2-2.2 3.4"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></svg></div>
 <div><div class="alert__title">أنت المتحكّم دائماً</div><div class="alert__body">يمكنك مراجعة موافقتك أو سحبها في أي وقت، دون أن يؤثر ذلك على استخدامك السابق للخدمة.</div></div>
 </div>
 
 <div class="stack-sm">
-<button class="btn btn--accent btn--block btn--lg">أوافق وأتابع</button>
-<div class="footnote center">بالمتابعة فإنك تقرّ باطّلاعك على <a>سياسة الخصوصية</a> و<a>الشروط والأحكام</a>.</div>
+<button type="submit" class="btn btn--accent btn--block btn--lg">أوافق وأتابع</button>
+<div class="footnote center">بالمتابعة فإنك تقرّ باطّلاعك على سياسة الخصوصية والشروط والأحكام.</div>
 </div>
 
 </div>
+</form>
 </div>
 </x-layout>

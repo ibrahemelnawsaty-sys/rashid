@@ -19,7 +19,7 @@ class DashboardController extends Controller
 
     public function index(): View
     {
-        $user = User::where('role', 'individual')->firstOrFail();
+        $user = auth()->user();
 
         // الملف المالي المخزّن؛ يُحتسب عند غيابه (محرك حتمي، لا LLM).
         $profile = $user->financialProfile

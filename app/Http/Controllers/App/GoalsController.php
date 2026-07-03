@@ -13,7 +13,7 @@ class GoalsController extends Controller
 {
     public function index(): View
     {
-        $user = User::where('role', 'individual')->firstOrFail();
+        $user = auth()->user();
 
         $goals = $user->financialGoals()
             ->orderBy('priority')

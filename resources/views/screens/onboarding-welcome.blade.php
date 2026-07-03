@@ -26,7 +26,7 @@
 </div></div></div>
 
 <div class="stack-sm">
-<button class="btn btn--accent btn--block btn--lg">لنبدأ</button>
+<a href="{{ route('app.onboarding.consent') }}" class="btn btn--accent btn--block btn--lg">لنبدأ</a>
 <p class="footnote center">بالمتابعة أنت توافق على شروط الخدمة وسياسة الخصوصية</p>
 </div>
 </div>
