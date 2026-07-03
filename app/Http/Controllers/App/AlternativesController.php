@@ -24,4 +24,20 @@ class AlternativesController extends Controller
             'alternatives' => $alternatives,
         ]);
     }
+
+    /** تفصيل بديل واحد مع مقدّميه المعتمدين. */
+    public function show(string $slug): View
+    {
+        $alternative = Alternative::with([
+            'providers' => fn ($query) => $query->orderBy('sort_order'),
+            'providers.provider',
+        ])
+            ->where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        return view('screens.alternative-show', [
+            'alternative' => $alternative,
+        ]);
+    }
 }

@@ -33,7 +33,7 @@ Route::prefix('app')->group(function () {
 
     // البدائل والتمويل
     Route::get('/alternatives', [AlternativesController::class, 'index'])->name('app.alternatives.index');
-    Route::view('/alternatives/gov_development_finance', 'screens.alternative-show')->name('app.alternatives.show');
+    Route::get('/alternatives/{slug}', [AlternativesController::class, 'show'])->name('app.alternatives.show');
     Route::view('/finance-requests/compare', 'screens.finance-compare')->name('app.finance_requests.compare');
 
     // الادخار والمستشار
