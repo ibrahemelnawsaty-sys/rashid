@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\App\AdvisorController;
 use App\Http\Controllers\App\AlternativesController;
 use App\Http\Controllers\App\DashboardController;
 use App\Http\Controllers\App\DecisionController;
@@ -53,7 +54,8 @@ Route::middleware('auth')->prefix('app')->group(function () {
         // الادخار والمستشار
         Route::get('/goals', [GoalsController::class, 'index'])->name('app.goals.index');
         Route::view('/goals/1', 'screens.goal-show')->name('app.goals.show');
-        Route::view('/advisor', 'screens.advisor')->name('app.advisor.index');
+        Route::get('/advisor', [AdvisorController::class, 'index'])->name('app.advisor.index');
+        Route::post('/advisor', [AdvisorController::class, 'store'])->name('app.advisor.store');
 
         // الإعدادات والخصوصية
         Route::view('/notifications', 'screens.notifications')->name('app.notifications.index');

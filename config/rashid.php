@@ -6,4 +6,7 @@ return [
 
     // النموذج الافتراضي لطبقة المستشار الذكي (اختياري).
     'ai_model' => env('AI_ADVISOR_MODEL', 'claude-haiku-4-5-20251001'),
+
+    // مفتاح Claude API؛ عند غيابه يعمل المستشار بردود حتمية من محرك القواعد.
+    'ai_key' => env('ANTHROPIC_API_KEY'),
 ];
